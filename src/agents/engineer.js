@@ -16,7 +16,7 @@ async function callModel(state) {
   return { messages: [response] };
 }
 
-export function buildAgentGraph() {
+export function buildEngineerGraph() {
   return new StateGraph(MessagesAnnotation)
     .addNode("agent", callModel)
     .addNode("tools", toolNode)
