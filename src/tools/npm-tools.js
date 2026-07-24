@@ -102,4 +102,19 @@ const npmRunScript = tool(
   },
 );
 
-export const npmTools = [npmInstall, npmRunScript];
+const npmExplain = tool(
+  async ({ packageName }) => runNpm(["explain", packageName]),
+  {
+    name: "npm_explain",
+    description:
+      "Explain why a package is installed, showing the full dependency path(s) from top-level dependencies down to it. Use this to find the parent dependency that pulled in a transitive dependency. If multiple versions of the same package are installed (e.g. two dependencies require different versions of the same transitive package), pass 'name@version' (e.g. 'lib-c@0.3.0') to scope the explanation to that specific version's parent chain instead of showing all installed versions.",
+    schema: z.object({
+      packageName: z
+        .string()
+        .min(1)
+        .describe("Name of the package to explain, optionally as 'name@version' to disambiguate when multiple versions are installed"),
+    }),
+  },
+);
+
+export const npmTools = [npmInstall, npmRunScript, npmExplain];
