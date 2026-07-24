@@ -6,6 +6,7 @@ import { searchTools } from "../tools/search-tools.js";
 import { gitTools } from "../tools/git-tools.js";
 import { githubTools } from "../tools/github-tools.js";
 import { npmTools } from "../tools/npm-tools.js";
+import { logMessage } from "../utils/logger.js";
 
 const tools = [...fileTools, ...searchTools, ...gitTools, ...githubTools, ...npmTools];
 const model = createModel().bindTools(tools);
@@ -13,6 +14,7 @@ const toolNode = new ToolNode(tools);
 
 async function callModel(state) {
   const response = await model.invoke(state.messages);
+  logMessage(response);
   return { messages: [response] };
 }
 
