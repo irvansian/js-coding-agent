@@ -4,10 +4,9 @@ import { buildEngineerGraph } from "./agents/engineer.js";
 import { logMessage } from "./utils/logger.js";
 
 const TASK =
-  "In the workspace, create a package.json with a 'test' script that runs `node -e \"console.log('3 " +
-  "passed, 0 failed')\"` and a 'build' script that runs `node -e \"console.log('build ok')\"`. Run the " +
-  "test script and report its output. Then try running a script called 'deploy' (which doesn't exist) " +
-  "and report what happens.";
+  "The workspace is currently empty. Set up a new Express.js project from scratch: initialize " +
+  "package.json, install express, and add a single GET / endpoint that responds with 'Hello World'. " +
+  "Verify that it actually works before reporting done.";
 
 async function main() {
   const agent = buildEngineerGraph();
