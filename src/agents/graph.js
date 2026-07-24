@@ -5,8 +5,9 @@ import { fileTools } from "../tools/file-tools.js";
 import { searchTools } from "../tools/search-tools.js";
 import { gitTools } from "../tools/git-tools.js";
 import { githubTools } from "../tools/github-tools.js";
+import { npmTools } from "../tools/npm-tools.js";
 
-const tools = [...fileTools, ...searchTools, ...gitTools, ...githubTools];
+const tools = [...fileTools, ...searchTools, ...gitTools, ...githubTools, ...npmTools];
 const model = createModel().bindTools(tools);
 const toolNode = new ToolNode(tools);
 
