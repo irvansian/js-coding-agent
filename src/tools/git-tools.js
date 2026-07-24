@@ -153,6 +153,25 @@ const gitPush = tool(
   },
 );
 
+const gitPull = tool(
+  async ({ branch }) => {
+    const args = ["pull"];
+    if (branch) args.push("origin", branch);
+    return runGit(args, { withAuth: true });
+  },
+  {
+    name: "git_pull",
+    description:
+      "Pull the latest changes from 'origin' into the current branch. With no branch given, uses the current branch's tracking info (set automatically by git_clone/git_push).",
+    schema: z.object({
+      branch: z
+        .string()
+        .optional()
+        .describe("Remote branch to pull from origin. Defaults to the current branch's tracked upstream."),
+    }),
+  },
+);
+
 export const gitTools = [
   gitStatus,
   gitDiff,
@@ -162,4 +181,5 @@ export const gitTools = [
   gitClone,
   gitCreateBranch,
   gitPush,
+  gitPull,
 ];
